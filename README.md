@@ -66,5 +66,17 @@ python3 producer <topic_name>
 
 ### Run the Client on another machine
 ```
-python3 consumer <topic_name>
+python3 consumer <input_topic_name> <output_topic_name>
+```
+
+### Example with event chaining
+```
+# Terminal 1: final stage consumer (reads topic2 and publishes to topic3)
+python3 consumer topic2 topic3
+
+# Terminal 2: bridge consumer/producer (reads topic1 and publishes to topic2)
+python3 consumer topic1 topic2
+
+# Terminal 3: initial producer (writes on topic1)
+python3 producer topic1
 ```
